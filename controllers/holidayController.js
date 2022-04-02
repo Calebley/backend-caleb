@@ -47,6 +47,10 @@ router.delete("/:id", async (req, res) => {
     res.json({ message: "Holiday Deleted" })
 })
 
-
+//Put route
+router.put("/:id", async (req, res) => {
+    await Holiday.findByIdAndUpdate(req.params.id, req.body);
+    res.json({ message: "Holiday Updated" });
+  });
 
 module.exports = router;
