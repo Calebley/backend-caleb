@@ -1,7 +1,8 @@
 require("dotenv").config()
 const express = require("express")
+const cors = require("cors")
 const mongoose = require("mongoose")
-const Holiday = require("./models/Holiday")
+
 const HolidayController = require("./controllers/holidayController")
 const app = express()
 const PORT = process.env.PORT
@@ -21,6 +22,7 @@ mongoose.connection.once("open", () => {
   console.log("connected to mongoose...");
 });
 
+app.use(cors())
 app.use("/api/holidays", HolidayController)
 
 app.get("/", (req,res) => {
