@@ -17,6 +17,7 @@ router.get("/seed", async (req, res) => {
   res.json(holidays)
 })
 
+//Index route
 router.get('/', (req, res) => {
     Holiday.find()
       .then(holidays => {
@@ -26,6 +27,7 @@ router.get('/', (req, res) => {
         res.json(err)
       })
   })
+
 
 
 //* Create Route
@@ -38,5 +40,13 @@ router.post("/", async (req, res) => {
     res.status(400).json({ error: error.message });
   };
 });
+
+//Delete route
+router.delete("/:id", async (req, res) => {
+    await Holiday.findByIDAndRemove(req.params.id)
+    res.json({ message: "Holiday Deleted" })
+})
+
+
 
 module.exports = router;
