@@ -3,16 +3,18 @@ const router = express.Router()
 const Holiday = require("../models/Holiday")
 
 router.get("/seed", async (req,res) => {
-    await Holiday.deleteMany({})
-    await Holiday.insertMany([
+
+    const holidays = [
         {
             name: "New Year's Day"
         },
         {
-            name: "Good fridy"
+            name: "Good friday"
         }
-    ])
-    res.send("holidays seeded")
+    ]
+    await Holiday.deleteMany({})
+    await Holiday.insertMany()
+    res.json(holidays)
 })
 
 router.get("/", (req,res) => {
