@@ -13,7 +13,7 @@ router.get("/seed", async (req,res) => {
         }
     ]
     await Holiday.deleteMany({})
-    await Holiday.insertMany()
+    await Holiday.insertMany(holidays)
     res.json(holidays)
 })
 
